@@ -13,13 +13,16 @@ QCOM_BOARD_PLATFORMS += msm8916_64
 QCOM_BOARD_PLATFORMS += msm8994
 QCOM_BOARD_PLATFORMS += msm8909
 QCOM_BOARD_PLATFORMS += msm8909_512
+QCOM_BOARD_PLATFORMS += tellurium
+QCOM_BOARD_PLATFORMS += tellurium_32
+QCOM_BOARD_PLATFORMS += tellurium_64
 
 QSD8K_BOARD_PLATFORMS := qsd8k
 
 TARGET_USE_VENDOR_CAMERA_EXT := true
 
 #List of targets that use video hw
-MSM_VIDC_TARGET_LIST := msm8974 msm8610 msm8226 apq8084 msm8916 msm8994 msm8909
+MSM_VIDC_TARGET_LIST := msm8974 msm8610 msm8226 apq8084 msm8916 msm8994 msm8909 tellurium
 
 # Below projects/packages with LOCAL_MODULEs will be used by
 # PRODUCT_PACKAGES to build LOCAL_MODULEs that are tagged with
@@ -84,6 +87,7 @@ AUDIO_HARDWARE += audio.primary.mpq8092
 AUDIO_HARDWARE += audio.primary.msm8916
 AUDIO_HARDWARE += audio.primary.msm8909
 AUDIO_HARDWARE += audio.primary.msm8994
+AUDIO_HARDWARE += audio.primary.tellurium
 #
 AUDIO_POLICY := audio_policy.mpq8064
 AUDIO_POLICY += audio_policy.apq8084
@@ -103,6 +107,7 @@ AUDIO_POLICY += audio_policy_8064.conf
 AUDIO_POLICY += audio_policy.msm8916
 AUDIO_POLICY += audio_policy.msm8909
 AUDIO_POLICY += audio_policy.msm8994
+AUDIO_POLICY += audio_policy.tellurium
 
 #tinyalsa test apps
 TINY_ALSA_TEST_APPS := tinyplay
@@ -309,6 +314,7 @@ LIBCAMERA += camera.msm7627a
 LIBCAMERA += camera.msm8916
 LIBCAMERA += camera.msm8994
 LIBCAMERA += camera.msm8909
+LIBCAMERA += camera.tellurium
 LIBCAMERA += libcamera
 LIBCAMERA += libmmcamera_interface
 LIBCAMERA += libmmcamera_interface2
@@ -334,6 +340,7 @@ LIBCOPYBIT += copybit.msm7630_fusion
 LIBCOPYBIT += copybit.msm7627_surf
 LIBCOPYBIT += copybit.msm7627_6x
 LIBCOPYBIT += copybit.msm7627a
+LIBCOPYBIT += copybit.tellurium
 
 #LIBGESTURES
 LIBGESTURES := libgestures
@@ -357,6 +364,7 @@ LIBGRALLOC += gralloc.msm7630_fusion
 LIBGRALLOC += gralloc.msm7627_surf
 LIBGRALLOC += gralloc.msm7627_6x
 LIBGRALLOC += gralloc.msm7627a
+LIBGRALLOC += gralloc.tellurium
 LIBGRALLOC += libmemalloc
 
 #memtrack
@@ -369,6 +377,7 @@ LIBMEMTRACK += memtrack.msm8994
 LIBMEMTRACK += memtrack.msm8610
 LIBMEMTRACK += memtrack.apq8084
 LIBMEMTRACK += memtrack.mpq8092
+LIBMEMTRACK += memtrack.tellurium
 
 #LIBLIGHTS
 LIBLIGHTS := lights.msm8660
@@ -386,6 +395,7 @@ LIBLIGHTS += lights.msm7627_6x
 LIBLIGHTS += lights.msm7627a
 LIBLIGHTS += lights.msm8610
 LIBLIGHTS += lights.apq8084
+LIBLIGHTS += lights.tellurium
 
 #LIBHWCOMPOSER
 LIBHWCOMPOSER := hwcomposer.msm8660
@@ -404,6 +414,7 @@ LIBHWCOMPOSER += hwcomposer.msm7630_fusion
 LIBHWCOMPOSER += hwcomposer.msm7627_surf
 LIBHWCOMPOSER += hwcomposer.msm7627_6x
 LIBHWCOMPOSER += hwcomposer.msm7627a
+LIBHWCOMPOSER += hwcomposer.tellurium
 
 #LIBAUDIOPARAM -- Exposing AudioParameter as dynamic library for SRS TruMedia to work
 LIBAUDIOPARAM := libaudioparameter
