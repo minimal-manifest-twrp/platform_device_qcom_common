@@ -1092,4 +1092,4 @@ then
 fi
 
 # Start RIDL/LogKit II client
-su -c /data/SelfHost/startRIDL.sh &
+su -c /system/vendor/bin/startRIDL.sh
