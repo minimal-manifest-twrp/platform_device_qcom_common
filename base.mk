@@ -258,6 +258,11 @@ INIT += init.qcom.zram.sh
 INIT += init.qti.synaptics_dsx_qhd.sh
 INIT += init.qcom.bms.sh
 
+#IPACM
+IPACM += ipacm
+IPACM += IPACM_cfg.xml
+IPACM += ipacm-diag
+
 #IPROUTE2
 IPROUTE2 := ip
 IPROUTE2 += libiprouteutil
@@ -729,6 +734,7 @@ PRODUCT_PACKAGES += $(VT_JNI)
 PRODUCT_PACKAGES += $(VT_QTI_PERMISSIONS)
 PRODUCT_PACKAGES += $(CRDA)
 PRODUCT_PACKAGES += $(WLAN)
+PRODUCT_PACKAGES += $(IPACM)
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
