@@ -30,4 +30,5 @@
 // skips conn update at conn completion
 #define BTA_BLE_SKIP_CONN_UPD  FALSE
 #define BLE_PERIPHERAL_ADV_NAME  TRUE
+#define BTM_LE_SECURE_CONN  TRUE
 #endif
