@@ -41,5 +41,5 @@ add_lunch_combo msm8994-userdebug
 add_lunch_combo thulium-userdebug
 add_lunch_combo msm8909-userdebug
 add_lunch_combo msm8909_512-userdebug
-add_lunch_combo tellurium_32-userdebug
-add_lunch_combo tellurium_64-userdebug
+add_lunch_combo msm8952_32-userdebug
+add_lunch_combo msm8952_64-userdebug
