@@ -240,3 +240,6 @@
 
 # Fingerprint device
 /dev/ontario              0640   system     system
+
+# Add device block for FRP
+/dev/block/bootdevice/by-name/config    0660   system     system
