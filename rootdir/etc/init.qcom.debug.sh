@@ -75,10 +75,15 @@ enable_stm_events()
     echo 1 > /sys/kernel/debug/tracing/events/msm_low_power/enable
 }
 
-coresight_config=`getprop persist.debug.coresight.config`
+coresight_config=`getprop ro.dbg.coresight.config`
 
 case "$coresight_config" in
-    "stm-events")
+    "stm_events")
+        echo "Enabling STM events."
         enable_stm_events
+        ;;
+    *)
+        echo "Skipping coresight configuration."
+        exit
         ;;
 esac
