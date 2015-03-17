@@ -643,6 +643,14 @@ case "$target" in
                 # HMP scheduler (big.Little cluster related) settings
                 echo 75 > /proc/sys/kernel/sched_upmigrate
                 echo 60 > /proc/sys/kernel/sched_downmigrate
+
+                # Enable core control
+                insmod /system/lib/modules/core_ctl.ko
+                echo 2 > /sys/devices/system/cpu/cpu0/core_ctl/min_cpus
+                echo 68 > /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres
+                echo 40 > /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres
+                echo 100 > /sys/devices/system/cpu/cpu0/core_ctl/offline_delay_ms
+
             ;;
         esac
     ;;
