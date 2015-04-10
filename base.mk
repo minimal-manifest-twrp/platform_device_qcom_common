@@ -497,6 +497,7 @@ MM_VIDEO += libOmxVdecHevc
 MM_VIDEO += libOmxVdpp
 MM_VIDEO += libOmxVenc
 MM_VIDEO += libOmxVidEnc
+MM_VIDEO += libOmxSwVencHevc
 MM_VIDEO += libstagefrighthw
 MM_VIDEO += mm-vdec-omx-property-mgr
 MM_VIDEO += mm-vdec-omx-test
