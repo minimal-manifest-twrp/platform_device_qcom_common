@@ -1077,6 +1077,20 @@ case "$target" in
 esac
 
 case "$target" in
+    "msm8952")
+	# Bring up all cores online
+	echo 1 > /sys/devices/system/cpu/cpu1/online
+	echo 1 > /sys/devices/system/cpu/cpu2/online
+	echo 1 > /sys/devices/system/cpu/cpu3/online
+	echo 1 > /sys/devices/system/cpu/cpu4/online
+	echo 1 > /sys/devices/system/cpu/cpu5/online
+	echo 1 > /sys/devices/system/cpu/cpu6/online
+	echo 1 > /sys/devices/system/cpu/cpu7/online
+	echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
+	;;
+esac
+
+case "$target" in
     "msm7627_ffa" | "msm7627_surf" | "msm7627_6x")
         echo 25000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
         ;;
