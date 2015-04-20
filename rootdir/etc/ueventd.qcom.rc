@@ -236,3 +236,6 @@
 /dev/hbtp_input           0660   system     system
 /dev/hbtp_vm              0660   system     system
 /dev/jdi-bu21150          0660   system     system
+
+# Fingerprint device
+/dev/ontario              0640   system     system
