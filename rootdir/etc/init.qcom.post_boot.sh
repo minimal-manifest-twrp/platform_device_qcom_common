@@ -559,6 +559,13 @@ case "$target" in
 	        echo 1 > /sys/devices/system/cpu/cpu2/online
 	        echo 1 > /sys/devices/system/cpu/cpu3/online
 	        echo 1 > /sys/devices/system/cpu/cpu4/online
+
+                insmod /system/lib/modules/core_ctl.ko
+                echo 4 > /sys/devices/system/cpu/cpu0/core_ctl/min_cpus
+                echo 4 > /sys/devices/system/cpu/cpu0/core_ctl/max_cpus
+                echo 1 > /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres
+                echo 0 > /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres
+
             ;;
         esac
 
