@@ -798,11 +798,15 @@ case "$target" in
         echo 1 > /sys/devices/system/cpu/cpu1/online
         echo 1 > /sys/devices/system/cpu/cpu2/online
         echo 1 > /sys/devices/system/cpu/cpu3/online
+	echo 1 > /sys/devices/system/cpu/cpu4/online
         echo 1 > /sys/devices/system/cpu/cpu5/online
         echo 1 > /sys/devices/system/cpu/cpu6/online
         echo 1 > /sys/devices/system/cpu/cpu7/online
 
-        # HMP scheduler (big.Little cluster related) settings
+	# Enable Low power modes
+	echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
+
+	# HMP scheduler (big.Little cluster related) settings
         echo 93 > /proc/sys/kernel/sched_upmigrate
         echo 70 > /proc/sys/kernel/sched_downmigrate
 
@@ -821,6 +825,9 @@ case "$target" in
         echo 68 > /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres
         echo 40 > /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres
         echo 100 > /sys/devices/system/cpu/cpu0/core_ctl/offline_delay_ms
+
+	# Enable dynamic clock gating
+	echo 1 > /sys/module/lpm_levels/lpm_workarounds/dynamic_clock_gating
     ;;
 esac
 
@@ -1080,20 +1087,6 @@ case "$target" in
 	do
 		echo 30 > $gpu_bimc_guard_band_mbps
 	done
-	;;
-esac
-
-case "$target" in
-    "msm8952")
-	# Bring up all cores online
-	echo 1 > /sys/devices/system/cpu/cpu1/online
-	echo 1 > /sys/devices/system/cpu/cpu2/online
-	echo 1 > /sys/devices/system/cpu/cpu3/online
-	echo 1 > /sys/devices/system/cpu/cpu4/online
-	echo 1 > /sys/devices/system/cpu/cpu5/online
-	echo 1 > /sys/devices/system/cpu/cpu6/online
-	echo 1 > /sys/devices/system/cpu/cpu7/online
-	echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
 	;;
 esac
 
