@@ -1164,6 +1164,9 @@ case "$target" in
     "msm8909")
 	start perfd
     ;;
+    "msm8952")
+        start perfd
+    ;;
     "msm8974")
         start mpdecision
         echo 512 > /sys/block/mmcblk0/bdi/read_ahead_kb
