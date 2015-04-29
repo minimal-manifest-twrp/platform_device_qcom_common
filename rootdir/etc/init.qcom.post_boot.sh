@@ -1168,9 +1168,11 @@ esac
 # Post-setup services
 case "$target" in
     "msm8660" | "msm8960" | "msm8226" | "msm8610" | "mpq8092" )
+        rm /data/system/perfd/default_values
         start mpdecision
     ;;
     "msm8916")
+        rm /data/system/perfd/default_values
         if [ -f /sys/devices/soc0/soc_id ]; then
            soc_id=`cat /sys/devices/soc0/soc_id`
         else
@@ -1189,9 +1191,11 @@ case "$target" in
         start perfd # start perfd on 8916, 8939 and 8929
     ;;
     "msm8909")
+        rm /data/system/perfd/default_values
 	start perfd
     ;;
     "msm8952")
+        rm /data/system/perfd/default_values
         start perfd
     ;;
     "msm8974")
