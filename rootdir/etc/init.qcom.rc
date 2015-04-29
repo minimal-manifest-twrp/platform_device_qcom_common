@@ -928,3 +928,8 @@ service qcom-RIDL /system/bin/sh /system/vendor/bin/startRIDL.sh
 
 on property:dev.bootcomplete=1
     start qcom-RIDL
+
+service fidodaemon /system/vendor/bin/fidodaemon
+    class late_start
+    user system
+    group system
