@@ -355,12 +355,6 @@ case "$target" in
                else
                    revision=`cat /sys/devices/system/soc/soc0/revision`
                fi
-               case "$revision" in
-                   "3.0")
-                       echo N > /sys/module/lpm_levels/system/power/power-l2-gdhs/idle_enabled
-                       echo N > /sys/module/lpm_levels/system/performance/performance-l2-gdhs/idle_enabled
-                   ;;
-               esac
                echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
                echo 10 > /sys/class/net/rmnet0/queues/rx-0/rps_cpus
                 if [ -f /sys/devices/soc0/platform_subtype_id ]; then
@@ -820,6 +814,12 @@ case "$target" in
                     echo 40 > /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres
                     echo 100 > /sys/devices/system/cpu/cpu0/core_ctl/offline_delay_ms
 
+		    case "$revision" in
+			"3.0")
+				# Enable dynamic clock gating
+			        echo 1 > /sys/module/lpm_levels/lpm_workarounds/dynamic_clock_gating
+			;;
+		    esac
                 fi
             ;;
         esac
