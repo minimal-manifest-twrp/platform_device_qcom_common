@@ -709,8 +709,10 @@ case "$target" in
                 else
 
                     # Apply 3.0 specific Sched & Governor settings
+                    # HMP scheduler settings for 8939 V3.0
                     echo 3 > /proc/sys/kernel/sched_window_stats_policy
                     echo 3 > /proc/sys/kernel/sched_ravg_hist_size
+                    echo 20000000 > /proc/sys/kernel/sched_ravg_window
 
                     # HMP Task packing settings for 8939 V3.0
                     echo 20 > /proc/sys/kernel/sched_small_task
@@ -832,6 +834,7 @@ case "$target" in
         # HMP scheduler settings for 8952 soc id is 264
         echo 3 > /proc/sys/kernel/sched_window_stats_policy
         echo 3 > /proc/sys/kernel/sched_ravg_hist_size
+        echo 20000000 > /proc/sys/kernel/sched_ravg_window
 
         # HMP Task packing settings for 8952
         echo 20 > /proc/sys/kernel/sched_small_task
@@ -955,7 +958,7 @@ case "$target" in
 
 	# HMP scheduler (big.Little cluster related) settings
         echo 93 > /proc/sys/kernel/sched_upmigrate
-        echo 70 > /proc/sys/kernel/sched_downmigrate
+        echo 83 > /proc/sys/kernel/sched_downmigrate
 
         # Enable sched guided freq control
         echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load
