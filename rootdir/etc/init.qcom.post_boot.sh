@@ -829,6 +829,16 @@ esac
 case "$target" in
     "msm8952")
 
+        #Enable adaptive LMK and set vmpressure_file_min
+        ProductName=`getprop ro.product.name`
+        if [ "$ProductName" == "msm8952_32" ] || [ "$ProductName" == "msm8952_32_LMT" ]; then
+            echo 1 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
+            echo 53059 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
+        elif [ "$ProductName" == "msm8952_64" ] || [ "$ProductName" == "msm8952_64_LMT" ]; then
+            echo 1 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
+            echo 81250 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
+        fi
+
         # HMP scheduler settings for 8952 soc id is 264
         echo 3 > /proc/sys/kernel/sched_window_stats_policy
         echo 3 > /proc/sys/kernel/sched_ravg_hist_size
