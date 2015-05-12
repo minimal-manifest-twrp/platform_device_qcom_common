@@ -775,7 +775,7 @@ case "$target" in
                     # enable governor for power cluster
                     echo 1 > /sys/devices/system/cpu/cpu4/online
                     echo "interactive" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
-                    echo "39000 998400:19000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
+                    echo 39000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
                     echo 90 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
                     echo 20000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
                     echo 800000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
@@ -915,7 +915,7 @@ case "$target" in
         # enable governor for power cluster
         echo 1 > /sys/devices/system/cpu/cpu4/online
         echo "interactive" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
-        echo "39000 998400:19000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
+        echo 39000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
         echo 90 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
         echo 20000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
         echo 800000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
