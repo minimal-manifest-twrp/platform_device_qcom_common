@@ -256,6 +256,11 @@ on mmi
 
     #mkdir for factory data files.
     mkdir /cache/FTM_AP 0750 root root
+    #sensor settings
+    chmod 775 /persist/sensors
+    chmod 664 /persist/sensors/sensors_settings
+    chown system root /persist/sensors/sensors_settings
+    mkdir /data/misc/sensors 775 system root
 
     #Start the following services needed for fftm
     start qcom-usb-sh
@@ -263,6 +268,7 @@ on mmi
     start debuggerd
     start debuggerd64
     start config_bluetooth
+    start sensors
     start media
     start fastmmi
     start wcnss-service
