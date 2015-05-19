@@ -131,7 +131,7 @@ case "$usb_config" in
                         "msm8909")
                             setprop persist.sys.usb.config diag,serial_smd,rmnet_qti_bam,adb
                         ;;
-                        "msm8952" | "terbium")
+                        "msm8952" | "msm8976")
                             setprop persist.sys.usb.config diag,serial_smd,rmnet_ipa,adb
                         ;;
                         *)
@@ -170,7 +170,7 @@ case "$target" in
         echo BAM2BAM_IPA > /sys/class/android_usb/android0/f_rndis_qc/rndis_transports
         echo 1 > /sys/class/android_usb/android0/f_rndis_qc/max_pkt_per_xfer # Disable RNDIS UL aggregation
     ;;
-    "msm8952" | "terbium")
+    "msm8952" | "msm8976")
         echo BAM2BAM_IPA > /sys/class/android_usb/android0/f_rndis_qc/rndis_transports
     ;;
 esac
