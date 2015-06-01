@@ -882,6 +882,10 @@ case "$target" in
             do
                 echo 20 > $cpu_io_percent
             done
+            for cpu_guard_band in /sys/class/devfreq/qcom,cpubw*/bw_hwmon/guard_band_mbps
+            do
+                echo 30 > $cpu_guard_band
+            done
         done
 
         for gpu_bimc_io_percent in /sys/class/devfreq/qcom,gpubw*/bw_hwmon/io_percent
