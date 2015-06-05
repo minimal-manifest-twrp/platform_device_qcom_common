@@ -1001,6 +1001,8 @@ case "$target" in
 
                 # Enable dynamic clock gating
                 echo 1 > /sys/module/lpm_levels/lpm_workarounds/dynamic_clock_gating
+                # Enable C-group base upmigration feature
+                echo 1 > /dev/cpuctl/bg_non_interactive/cpu.upmigrate_discourage
             ;;
             *)
                 panel=`cat /sys/class/graphics/fb0/modes`
