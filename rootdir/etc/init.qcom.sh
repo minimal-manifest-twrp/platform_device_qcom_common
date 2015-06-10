@@ -264,6 +264,33 @@ case "$target" in
         ;;
     "msm8909")
         ;;
+    "msm8976")
+        if [ -f /sys/devices/soc0/soc_id ]; then
+            soc_id=`cat /sys/devices/soc0/soc_id`
+        else
+            soc_id=`cat /sys/devices/system/soc/soc0/id`
+        fi
+
+        if [ -f /sys/devices/soc0/platform_subtype_id ]; then
+             platform_subtype_id=`cat /sys/devices/soc0/platform_subtype_id`
+        fi
+        if [ -f /sys/devices/soc0/hw_platform ]; then
+             hw_platform=`cat /sys/devices/soc0/hw_platform`
+        fi
+        case "$soc_id" in
+             "278")
+                  case "$hw_platform" in
+                       "QRD")
+                            case "$platform_subtype_id" in
+                                 "0")
+                                      setprop qemu.hw.mainkeys 0
+                                      ;;
+                            esac
+                            ;;
+                  esac
+                  ;;
+        esac
+        ;;
 esac
 
 bootmode=`getprop ro.bootmode`
