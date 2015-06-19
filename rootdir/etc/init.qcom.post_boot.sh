@@ -1001,8 +1001,6 @@ case "$target" in
 
                 # Enable dynamic clock gating
                 echo 1 > /sys/module/lpm_levels/lpm_workarounds/dynamic_clock_gating
-                # Enable C-group base upmigration feature
-                echo 1 > /dev/cpuctl/bg_non_interactive/cpu.upmigrate_discourage
                 # Enable timer migration to little cluster
                 echo 1 > /proc/sys/kernel/power_aware_timer_migration
             ;;
