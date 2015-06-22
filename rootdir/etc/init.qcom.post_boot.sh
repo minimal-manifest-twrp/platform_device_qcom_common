@@ -1185,8 +1185,6 @@ case "$target" in
                 echo 40 > /sys/devices/system/cpu/cpu4/core_ctl/busy_down_thres
                 echo 100 > /sys/devices/system/cpu/cpu4/core_ctl/offline_delay_ms
 
-                # Enable dynamic clock gating
-                echo 1 > /sys/module/lpm_levels/lpm_workarounds/dynamic_clock_gating
                 # Enable timer migration to little cluster
                 echo 1 > /proc/sys/kernel/power_aware_timer_migration
             ;;
