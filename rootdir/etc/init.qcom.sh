@@ -280,6 +280,13 @@ case "$target" in
                                       ;;
                             esac
                             ;;
+                       "RCM")
+                            case "$platform_subtype_id" in
+                                 "0")
+                                      setprop qemu.hw.mainkeys 0
+                                      ;;
+                            esac
+                            ;;
                   esac
                   ;;
              "266")
@@ -299,6 +306,13 @@ case "$target" in
                             esac
                             ;;
                        "QRD")
+                            case "$platform_subtype_id" in
+                                 "0")
+                                      setprop qemu.hw.mainkeys 0
+                                      ;;
+                            esac
+                            ;;
+                       "RCM")
                             case "$platform_subtype_id" in
                                  "0")
                                       setprop qemu.hw.mainkeys 0
