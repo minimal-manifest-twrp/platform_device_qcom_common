@@ -355,7 +355,6 @@ case "$target" in
                else
                    revision=`cat /sys/devices/system/soc/soc0/revision`
                fi
-               echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
                echo 10 > /sys/class/net/rmnet0/queues/rx-0/rps_cpus
                 if [ -f /sys/devices/soc0/platform_subtype_id ]; then
                     platform_subtype_id=`cat /sys/devices/soc0/platform_subtype_id`
@@ -385,11 +384,9 @@ case "$target" in
                 esac
             ;;
             "268" | "269" | "270" | "271")
-                echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
                 echo 10 > /sys/class/net/rmnet0/queues/rx-0/rps_cpus
             ;;
              "233" | "240" | "242")
-		echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
 	        echo 1 > /sys/devices/system/cpu/cpu1/online
 		echo 1 > /sys/devices/system/cpu/cpu2/online
 	        echo 1 > /sys/devices/system/cpu/cpu3/online
@@ -598,6 +595,9 @@ case "$target" in
 	        echo 1 > /sys/devices/system/cpu/cpu3/online
 	        echo 1 > /sys/devices/system/cpu/cpu4/online
 
+		# Enable low power modes
+		echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
+
 		for gpu_bimc_io_percent in /sys/class/devfreq/qcom,gpubw*/bw_hwmon/io_percent
 		do
 			echo 40 > $gpu_bimc_io_percent
@@ -694,6 +694,9 @@ case "$target" in
                     echo 1 > /sys/devices/system/cpu/cpu5/online
                     echo 1 > /sys/devices/system/cpu/cpu6/online
                     echo 1 > /sys/devices/system/cpu/cpu7/online
+
+		    # Enable low power modes
+		    echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
 
                     # HMP scheduler (big.Little cluster related) settings
                     echo 75 > /proc/sys/kernel/sched_upmigrate
@@ -795,6 +798,9 @@ case "$target" in
                     echo 1 > /sys/devices/system/cpu/cpu5/online
                     echo 1 > /sys/devices/system/cpu/cpu6/online
                     echo 1 > /sys/devices/system/cpu/cpu7/online
+
+		    # Enable low power modes
+		    echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
 
                     # HMP scheduler (big.Little cluster related) settings
                     echo 93 > /proc/sys/kernel/sched_upmigrate
@@ -1001,8 +1007,6 @@ case "$target" in
 
                 # Enable dynamic clock gating
                 echo 1 > /sys/module/lpm_levels/lpm_workarounds/dynamic_clock_gating
-                # Enable C-group base upmigration feature
-                echo 1 > /dev/cpuctl/bg_non_interactive/cpu.upmigrate_discourage
                 # Enable timer migration to little cluster
                 echo 1 > /proc/sys/kernel/power_aware_timer_migration
             ;;
@@ -1629,37 +1633,4 @@ if [ -f /sys/devices/soc0/select_image ]; then
     echo $image_version > /sys/devices/soc0/image_version
     echo $image_variant > /sys/devices/soc0/image_variant
     echo $oem_version > /sys/devices/soc0/image_crm_version
-fi
-
-# Create native cgroup and move all tasks to it. Allot 15% real-time
-# bandwidth limit to native cgroup (which is what remains after
-# Android uses up 80% real-time bandwidth limit). root cgroup should
-# become empty after all tasks are moved to native cgroup.
-
-CGROUP_ROOT=/dev/cpuctl
-mkdir $CGROUP_ROOT/native
-echo 150000 > $CGROUP_ROOT/native/cpu.rt_runtime_us
-
-# We could be racing with task creation, as a result of which its possible that
-# we may fail to move all tasks from root cgroup to native cgroup in one shot.
-# Retry few times before giving up.
-
-for loop_count in 1 2 3
-do
-	for i in $(cat $CGROUP_ROOT/tasks)
-	do
-		echo $i > $CGROUP_ROOT/native/tasks
-	done
-
-	root_tasks=$(cat $CGROUP_ROOT/tasks)
-	if [ -z "$root_tasks" ]
-	then
-		break
-	fi
-done
-
-# Check if we failed to move all tasks from root cgroup
-if [ ! -z "$root_tasks" ]
-then
-	echo "Error: Could not move all tasks to native cgroup"
 fi

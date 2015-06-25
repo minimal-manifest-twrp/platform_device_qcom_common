@@ -31,8 +31,11 @@ import init.qcom.factory.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
+    insmod /sbin/qcrypto_module.ko
+    insmod /sbin/qdrbg_module.ko
 
 on init
+    start qfintverify
     # Set permissions for persist partition
     mkdir /persist 0771 system system
     # See storage config details at http://source.android.com/tech/storage/
@@ -305,6 +308,13 @@ on post-fs-data
     mkdir /data/misc/SelfHost/QCLogs/ 2750 system shell
     mkdir /data/misc/SelfHost/QCLogs/temp/ 0700 system shell
     mkdir /data/misc/SelfHost/storage/ 0700 system shell
+    mkdir /data/misc/SelfHost/Running/ 2750 system shell
+
+service qfintverify /sbin/qfintverify
+    user root
+    class core
+    seclabel u:r:qfips:s0
+    oneshot
 
 service qcomsysd /system/bin/qcom-system-daemon
     class main
