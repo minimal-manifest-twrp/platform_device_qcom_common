@@ -492,6 +492,7 @@ MM_CORE += libOmxCore
 
 #MM_VIDEO
 MM_VIDEO := ast-mm-vdec-omx-test
+MM_VIDEO += libavenhancements
 MM_VIDEO += liblasic
 MM_VIDEO += libOmxSwVencMpeg4
 MM_VIDEO += libOmxVdec
