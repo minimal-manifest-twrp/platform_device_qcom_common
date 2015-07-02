@@ -267,6 +267,8 @@ on mmi
     start logd
     start debuggerd
     start debuggerd64
+    start per_mgr
+    start ril-daemon
     start config_bluetooth
     start sensors
     start media
