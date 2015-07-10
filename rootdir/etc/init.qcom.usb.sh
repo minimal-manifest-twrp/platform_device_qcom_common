@@ -172,6 +172,9 @@ case "$target" in
     ;;
     "msm8952" | "msm8976")
         echo BAM2BAM_IPA > /sys/class/android_usb/android0/f_rndis_qc/rndis_transports
+
+	# Increase RNDIS DL max aggregation size to 11K
+	echo 11264 > /sys/module/g_android/parameters/rndis_dl_max_xfer_size
     ;;
 esac
 
