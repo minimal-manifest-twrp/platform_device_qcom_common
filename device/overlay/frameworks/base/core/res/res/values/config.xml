@@ -233,4 +233,13 @@
     <bool name="config_enableMultiUserUI">true</bool>
     <!--  Define Google play service package for FRP-->
     <string name="config_persistentDataPackageName" translatable="false">com.google.android.gms</string>
+
+    <!--Fully qualified class name of the plugin which would be
+         dynamically loaded by TelephonyPluginDelegate-->
+    <string name="telephony_plugin_class_name" translatable="false">com.qti.internal.telephony.QtiTelephonyPlugin</string>
+
+    <!--The locatiotion of .jar file which has the extended implementation
+         of telephony base classes.-->
+    <string name="telephony_plugin_lib_path" translatable="false">/system/framework/qti-telephony-common.jar</string>
+
 </resources>
