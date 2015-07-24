@@ -890,6 +890,11 @@ case "$target" in
                 echo 0 > /sys/devices/system/cpu/cpu6/sched_prefer_idle
                 echo 0 > /sys/devices/system/cpu/cpu7/sched_prefer_idle
 
+                for devfreq_gov in /sys/class/devfreq/qcom,mincpubw*/governor
+                do
+                    echo "cpufreq" > $devfreq_gov
+                done
+
                 for devfreq_gov in /sys/class/devfreq/qcom,cpubw*/governor
                 do
                     echo "bw_hwmon" > $devfreq_gov
@@ -1050,6 +1055,11 @@ case "$target" in
                 echo 3 > /sys/devices/system/cpu/cpu5/sched_mostly_idle_nr_run
                 echo 3 > /sys/devices/system/cpu/cpu6/sched_mostly_idle_nr_run
                 echo 3 > /sys/devices/system/cpu/cpu7/sched_mostly_idle_nr_run
+
+                for devfreq_gov in /sys/class/devfreq/qcom,mincpubw*/governor
+                do
+                    echo "cpufreq" > $devfreq_gov
+                done
 
                 for devfreq_gov in /sys/class/devfreq/qcom,cpubw*/governor
                 do
