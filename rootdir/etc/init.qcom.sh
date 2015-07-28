@@ -93,6 +93,20 @@ start_msm_irqbalance_8939()
 	fi
 }
 
+start_msm_irqbalance_8952()
+{
+	if [ -f /system/bin/msm_irqbalance ]; then
+		case "$platformid" in
+		    "239" | "241" | "263" | "264" | "268" | "269" | "270" | "271")
+			start msm_irqbalance;;
+		esac
+		case "$platformid" in
+			"266" | "274" | "277" | "278")
+			start msm_irqbal_lb;;
+		esac
+	fi
+}
+
 start_msm_irqbalance()
 {
 	if [ -f /system/bin/msm_irqbalance ]; then
@@ -218,7 +232,7 @@ case "$target" in
         esac
         ;;
     "msm8952")
-        start_msm_irqbalance_8939
+	start_msm_irqbalance_8952
         if [ -f /sys/devices/soc0/soc_id ]; then
             soc_id=`cat /sys/devices/soc0/soc_id`
         else
