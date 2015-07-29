@@ -1181,6 +1181,15 @@ case "$target" in
                 echo 1 > /sys/devices/system/cpu/cpu6/online
                 echo 1 > /sys/devices/system/cpu/cpu7/online
 
+                #Disable CPU retention modes for 32bit builds
+                ProductName=`getprop ro.product.name`
+                if [ "$ProductName" == "msm8952_32" ] || [ "$ProductName" == "msm8952_32_LMT" ]; then
+                    echo N > /sys/module/lpm_levels/system/a72/cpu4/retention/idle_enabled
+                    echo N > /sys/module/lpm_levels/system/a72/cpu5/retention/idle_enabled
+                    echo N > /sys/module/lpm_levels/system/a72/cpu6/retention/idle_enabled
+                    echo N > /sys/module/lpm_levels/system/a72/cpu7/retention/idle_enabled
+                fi
+
                 # Enable Low power modes
                 echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
 
