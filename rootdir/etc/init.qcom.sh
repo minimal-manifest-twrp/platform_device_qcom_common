@@ -125,6 +125,15 @@ esac
 
 start_sensors
 
+if [ -f /sys/class/graphics/fb0/modes ]; then
+	panel_res=`cat /sys/class/graphics/fb0/modes`
+	if [ "${panel_res:5:1}" == "x" ]; then
+		panel_xres=${panel_res:2:3}
+	else
+		panel_xres=${panel_res:2:4}
+	fi
+fi
+
 case "$target" in
     "msm7630_surf" | "msm7630_1x" | "msm7630_fusion")
         if [ -f /sys/devices/soc0/hw_platform ]; then
@@ -276,8 +285,10 @@ case "$target" in
                        "Surf")
                             case "$platform_subtype_id" in
                                  "0")
-                                      setprop qemu.hw.mainkeys 0
-                                      ;;
+                                    if [ $panel_xres -eq 1440 ]; then
+                                         setprop qemu.hw.mainkeys 0
+                                    fi
+                                    ;;
                             esac
                             ;;
                        "MTP")
@@ -297,8 +308,10 @@ case "$target" in
                        "RCM")
                             case "$platform_subtype_id" in
                                  "0")
-                                      setprop qemu.hw.mainkeys 0
-                                      ;;
+                                    if [ $panel_xres -eq 1440 ]; then
+                                         setprop qemu.hw.mainkeys 0
+                                    fi
+                                    ;;
                             esac
                             ;;
                   esac
@@ -308,8 +321,10 @@ case "$target" in
                        "Surf")
                             case "$platform_subtype_id" in
                                  "0")
-                                      setprop qemu.hw.mainkeys 0
-                                      ;;
+                                    if [ $panel_xres -eq 1440 ]; then
+                                         setprop qemu.hw.mainkeys 0
+                                    fi
+                                    ;;
                             esac
                             ;;
                        "MTP")
@@ -329,8 +344,10 @@ case "$target" in
                        "RCM")
                             case "$platform_subtype_id" in
                                  "0")
-                                      setprop qemu.hw.mainkeys 0
-                                      ;;
+                                    if [ $panel_xres -eq 1440 ]; then
+                                         setprop qemu.hw.mainkeys 0
+                                    fi
+                                    ;;
                             esac
                             ;;
                   esac
@@ -340,8 +357,10 @@ case "$target" in
                        "Surf")
                             case "$platform_subtype_id" in
                                  "0")
-                                      setprop qemu.hw.mainkeys 0
-                                      ;;
+                                    if [ $panel_xres -eq 1440 ]; then
+                                         setprop qemu.hw.mainkeys 0
+                                    fi
+                                    ;;
                             esac
                             ;;
                        "MTP")
@@ -361,8 +380,10 @@ case "$target" in
                        "RCM")
                             case "$platform_subtype_id" in
                                  "0")
-                                      setprop qemu.hw.mainkeys 0
-                                      ;;
+                                    if [ $panel_xres -eq 1440 ]; then
+                                         setprop qemu.hw.mainkeys 0
+                                    fi
+                                    ;;
                             esac
                             ;;
                   esac
@@ -372,8 +393,10 @@ case "$target" in
                        "Surf")
                             case "$platform_subtype_id" in
                                  "0")
-                                      setprop qemu.hw.mainkeys 0
-                                      ;;
+                                    if [ $panel_xres -eq 1440 ]; then
+                                         setprop qemu.hw.mainkeys 0
+                                    fi
+                                    ;;
                             esac
                             ;;
                        "MTP")
@@ -393,8 +416,10 @@ case "$target" in
                        "RCM")
                             case "$platform_subtype_id" in
                                  "0")
-                                      setprop qemu.hw.mainkeys 0
-                                      ;;
+                                    if [ $panel_xres -eq 1440 ]; then
+                                         setprop qemu.hw.mainkeys 0
+                                    fi
+                                    ;;
                             esac
                             ;;
                   esac
@@ -405,33 +430,6 @@ case "$target" in
         start_msm_irqbalance
         ;;
     "msm8909")
-        ;;
-    "msm8976")
-        if [ -f /sys/devices/soc0/soc_id ]; then
-            soc_id=`cat /sys/devices/soc0/soc_id`
-        else
-            soc_id=`cat /sys/devices/system/soc/soc0/id`
-        fi
-
-        if [ -f /sys/devices/soc0/platform_subtype_id ]; then
-             platform_subtype_id=`cat /sys/devices/soc0/platform_subtype_id`
-        fi
-        if [ -f /sys/devices/soc0/hw_platform ]; then
-             hw_platform=`cat /sys/devices/soc0/hw_platform`
-        fi
-        case "$soc_id" in
-             "278")
-                  case "$hw_platform" in
-                       "QRD")
-                            case "$platform_subtype_id" in
-                                 "0")
-                                      setprop qemu.hw.mainkeys 0
-                                      ;;
-                            esac
-                            ;;
-                  esac
-                  ;;
-        esac
         ;;
 esac
 
