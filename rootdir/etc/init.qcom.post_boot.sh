@@ -890,6 +890,11 @@ case "$target" in
                 echo 0 > /sys/devices/system/cpu/cpu6/sched_prefer_idle
                 echo 0 > /sys/devices/system/cpu/cpu7/sched_prefer_idle
 
+                for devfreq_gov in /sys/class/devfreq/qcom,mincpubw*/governor
+                do
+                    echo "cpufreq" > $devfreq_gov
+                done
+
                 for devfreq_gov in /sys/class/devfreq/qcom,cpubw*/governor
                 do
                     echo "bw_hwmon" > $devfreq_gov
@@ -1051,6 +1056,11 @@ case "$target" in
                 echo 3 > /sys/devices/system/cpu/cpu6/sched_mostly_idle_nr_run
                 echo 3 > /sys/devices/system/cpu/cpu7/sched_mostly_idle_nr_run
 
+                for devfreq_gov in /sys/class/devfreq/qcom,mincpubw*/governor
+                do
+                    echo "cpufreq" > $devfreq_gov
+                done
+
                 for devfreq_gov in /sys/class/devfreq/qcom,cpubw*/governor
                 do
                     echo "bw_hwmon" > $devfreq_gov
@@ -1096,26 +1106,26 @@ case "$target" in
                 echo 20000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate
                 echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
                 echo 40000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
-                echo 652800 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+                echo 691200 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
 
                 # enable governor for perf cluster
                 echo 1 > /sys/devices/system/cpu/cpu4/online
                 echo "interactive" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
-                echo "19000 1382400:39000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
                 echo 85 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
                 echo 20000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
                 echo 0 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy
-                echo "85 1612800:90 1747200:80" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
                 echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
                 echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/sampling_down_factor
-                echo 892800 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+                echo 883200 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
 
                 if [ $panel -gt 1080 ]; then
                     echo 19000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
-                    echo 902400 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
+                    echo 1017600 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
                     echo "80" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
                     echo 1382400 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
                     echo 800000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis
+                    echo "19000 1382400:39000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
+                    echo "85 1382400:90 1747200:80" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
                     # HMP Task packing settings for 8976
                     echo 30 > /proc/sys/kernel/sched_small_task
                     echo 20 > /sys/devices/system/cpu/cpu0/sched_mostly_idle_load
@@ -1129,8 +1139,10 @@ case "$target" in
                 else
                     echo 39000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
                     echo 806400 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
-                    echo "1 800000:90" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
+                    echo "1 691200:90" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
                     echo 1190400 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
+                    echo "19000 1190400:39000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
+                    echo "85 1190400:90 1747200:80" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
                     # HMP Task packing settings for 8976
                     echo 20 > /proc/sys/kernel/sched_small_task
                     echo 30 > /sys/devices/system/cpu/cpu0/sched_mostly_idle_load
@@ -1170,6 +1182,15 @@ case "$target" in
                 echo 1 > /sys/devices/system/cpu/cpu5/online
                 echo 1 > /sys/devices/system/cpu/cpu6/online
                 echo 1 > /sys/devices/system/cpu/cpu7/online
+
+                #Disable CPU retention modes for 32bit builds
+                ProductName=`getprop ro.product.name`
+                if [ "$ProductName" == "msm8952_32" ] || [ "$ProductName" == "msm8952_32_LMT" ]; then
+                    echo N > /sys/module/lpm_levels/system/a72/cpu4/retention/idle_enabled
+                    echo N > /sys/module/lpm_levels/system/a72/cpu5/retention/idle_enabled
+                    echo N > /sys/module/lpm_levels/system/a72/cpu6/retention/idle_enabled
+                    echo N > /sys/module/lpm_levels/system/a72/cpu7/retention/idle_enabled
+                fi
 
                 # Enable Low power modes
                 echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled

@@ -63,7 +63,7 @@ static char tmp[BUF_SIZE];
 // sys and dev fb paths
 char sys_fb_path[]  = "/sys/class/graphics/";
 char dev_fb_path[]  = "/dev/graphics/";
-#define DEV_GFX_HDMI "/dev/graphics/hdmi"
+#define DEV_GFX_HDMI "/devices/virtual/switch/hdmi"
 
 __attribute__ ((weak))
 void init_msm_properties(unsigned long soc, unsigned long socrev, char *board)
@@ -161,47 +161,97 @@ void init_alarm_boot_properties()
     }
 }
 
+static int tokenizeParams(char *inputParams, const char *delim,
+        char* tokenStr[], int *idx) {
+    char *tmp_token = NULL;
+    char *temp_ptr;
+    int index = 0;
+    if (!inputParams) {
+        return -1;
+    }
+    tmp_token = strtok_r(inputParams, delim, &temp_ptr);
+    while (tmp_token != NULL) {
+        tokenStr[index++] = tmp_token;
+        tmp_token = strtok_r(NULL, " ", &temp_ptr);
+    }
+    *idx = index;
+    return 0;
+}
+
+int getPluggableNode() {
+    FILE *panelInfoNodeFP = NULL;
+    int pluggableNode = -1;
+    char msmFbTypePath[128];
+
+    int j;
+    for(j = 0; j <= 2; j++) {
+        snprintf (msmFbTypePath, sizeof(msmFbTypePath),
+                "/sys/class/graphics/fb%d/msm_fb_panel_info", j);
+        panelInfoNodeFP = fopen(msmFbTypePath, "r");
+        if(panelInfoNodeFP){
+            size_t len = 4096;
+            ssize_t read;
+            char *readLine = (char *) malloc (len);
+            char property[92];
+            while((read = getline((char **)&readLine, &len,
+                            panelInfoNodeFP)) != -1) {
+                int token_ct = 0;
+                char *tokens[10];
+                memset(tokens, 0, sizeof(tokens));
+
+                if(!tokenizeParams(readLine, "=", tokens,
+                            &token_ct)) {
+                    if(!strncmp(tokens[0], "is_pluggable",
+                                strlen("is_pluggable"))) {
+                        if (atoi(tokens[1]) == 1) {
+                            pluggableNode = j;
+                            break;
+                        }
+                    }
+                }
+            }
+            fclose(panelInfoNodeFP);
+            free(readLine);
+        }
+    }
+
+    return pluggableNode;
+}
+
 /*
  * Setup Display related nodes & permissions. For HDMI, it can be fb1 or fb2
  * Loop through the sysfs nodes and determine the HDMI(dtv panel)
  */
 void set_display_node_perms()
 {
-    char panel_type[] = "dtv panel";
     char buf[BUF_SIZE];
-    int num;
+    int hdmiFbNum = getPluggableNode();
 
-    for (num=0; num<=2; num++) {
-        snprintf(tmp,sizeof(tmp),"%sfb%d/msm_fb_type", sys_fb_path, num);
-        if(read_file2(tmp, buf, sizeof(buf))) {
-            if(!strncmp(buf, panel_type, strlen(panel_type))) {
-                // Set appropriate permissions for the nodes
-                snprintf(tmp, sizeof(tmp), "%sfb%d/hpd", sys_fb_path, num);
-                setPerms(tmp, 0664);
-                setOwners(tmp, AID_SYSTEM, AID_GRAPHICS);
-                snprintf(tmp, sizeof(tmp), "%sfb%d/vendor_name", sys_fb_path,
-                             num);
-                setPerms(tmp, 0664);
-                setOwners(tmp, AID_SYSTEM, AID_GRAPHICS);
-                snprintf(tmp, sizeof(tmp), "%sfb%d/product_description",
-                            sys_fb_path, num);
-                setPerms(tmp, 0664);
-                setOwners(tmp, AID_SYSTEM, AID_GRAPHICS);
-                snprintf(tmp, sizeof(tmp), "%sfb%d/video_mode",
-                            sys_fb_path, num);
-                setPerms(tmp, 0664);
-                snprintf(tmp, sizeof(tmp), "%sfb%d/format_3d", sys_fb_path,
-                            num);
-                setPerms(tmp, 0664);
-                setOwners(tmp, AID_SYSTEM, AID_SYSTEM);
-                snprintf(tmp, sizeof(tmp), "%sfb%d/hdcp/tp", sys_fb_path, num);
-                setPerms(tmp, 0664);
-                setOwners(tmp, AID_SYSTEM, AID_SYSTEM);
-                snprintf(tmp, sizeof(tmp), "%sfb%d", dev_fb_path, num);
-                symlink(tmp, DEV_GFX_HDMI);
-                break;
-            }
-        }
+    snprintf(tmp,sizeof(tmp),"%sfb%d/msm_fb_type", sys_fb_path, hdmiFbNum);
+    if(read_file2(tmp, buf, sizeof(buf))) {
+        // Set appropriate permissions for the nodes
+        snprintf(tmp, sizeof(tmp), "%sfb%d/hpd", sys_fb_path, hdmiFbNum);
+        setPerms(tmp, 0664);
+        setOwners(tmp, AID_SYSTEM, AID_GRAPHICS);
+        snprintf(tmp, sizeof(tmp), "%sfb%d/vendor_name", sys_fb_path, hdmiFbNum);
+        setPerms(tmp, 0664);
+        setOwners(tmp, AID_SYSTEM, AID_GRAPHICS);
+        snprintf(tmp, sizeof(tmp), "%sfb%d/product_description", sys_fb_path, hdmiFbNum);
+        setPerms(tmp, 0664);
+        setOwners(tmp, AID_SYSTEM, AID_GRAPHICS);
+        snprintf(tmp, sizeof(tmp), "%sfb%d/res_info", sys_fb_path, hdmiFbNum);
+        setPerms(tmp, 0664);
+        setOwners(tmp, AID_SYSTEM, AID_GRAPHICS);
+        snprintf(tmp, sizeof(tmp), "%sfb%d/video_mode", sys_fb_path, hdmiFbNum);
+        setPerms(tmp, 0664);
+        snprintf(tmp, sizeof(tmp), "%sfb%d/format_3d", sys_fb_path, hdmiFbNum);
+        setPerms(tmp, 0664);
+        setOwners(tmp, AID_SYSTEM, AID_SYSTEM);
+        snprintf(tmp, sizeof(tmp), "%sfb%d/hdcp/tp", sys_fb_path, hdmiFbNum);
+        setPerms(tmp, 0664);
+        setOwners(tmp, AID_SYSTEM, AID_SYSTEM);
+        snprintf(tmp, sizeof(tmp), "%sfb%d", dev_fb_path, hdmiFbNum);
+        symlink(tmp, DEV_GFX_HDMI);
     }
     // Set the permission for idle_time.
     snprintf(tmp, sizeof(tmp), "%sfb0/idle_time", sys_fb_path);
