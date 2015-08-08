@@ -36,4 +36,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
          provisioning, availability etc -->
     <bool name="config_carrier_volte_vt_available">true</bool>
 
+<!-- If Voice Radio Technology is RIL_RADIO_TECHNOLOGY_LTE:14 this is the value
+         that should be used instead. A value of RIL_RADIO_TECHNOLOGY_UNKNOWN:0 means
+         there is no replacement value and VoLTE is assumed to be supported -->
+    <integer name="config_volte_replacement_rat">6</integer>
 </resources>
