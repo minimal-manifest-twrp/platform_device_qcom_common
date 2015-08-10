@@ -45,9 +45,8 @@ else
     soc_hwver=`cat /sys/devices/system/soc/soc0/platform_version` 2> /dev/null
 fi
 
-log -t BOOT -p i "MSM target '$1', SoC '$soc_hwplatform', HwID '$soc_hwid', SoC ver '$soc_hwver'"
-
-case "$1" in
+target=`getprop ro.board.platform`
+case "$target" in
     "msm7630_surf" | "msm7630_1x" | "msm7630_fusion")
         case "$soc_hwplatform" in
             "FFA" | "SVLTE_FFA")
@@ -164,6 +163,19 @@ case "$1" in
             *)
                 setprop ro.sf.lcd_density 480
                 ;;
+        esac
+        ;;
+      "msm8952")
+         case "$soc_hwplatform" in
+            *)
+            case "$soc_hwid" in
+                "264|278")
+                    setprop ro.sf.lcd_density 480
+                ;;
+                *)
+                    setprop ro.sf.lcd_density 320
+            esac
+            ;;
         esac
         ;;
 esac
