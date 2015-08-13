@@ -603,6 +603,9 @@ VT_JNI += libimscamera_jni
 # VT QTI Permissions
 VT_QTI_PERMISSIONS := qti_permissions.xml
 
+#IMS SETTINGS
+IMS_SETTINGS := imssettings
+
 #RCS
 RCS := rcs_service_aidl
 RCS += rcs_service_aidl.xml
@@ -740,6 +743,7 @@ PRODUCT_PACKAGES += $(WPA)
 PRODUCT_PACKAGES += $(ZLIB)
 PRODUCT_PACKAGES += $(VT_JNI)
 PRODUCT_PACKAGES += $(VT_QTI_PERMISSIONS)
+PRODUCT_PACKAGES += $(IMS_SETTINGS)
 PRODUCT_PACKAGES += $(CRDA)
 PRODUCT_PACKAGES += $(WLAN)
 PRODUCT_PACKAGES += $(IPACM)
