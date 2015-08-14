@@ -1117,13 +1117,13 @@ case "$target" in
                 echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
                 echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/sampling_down_factor
                 echo 883200 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+                echo 60000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis
 
                 if [ $panel -gt 1080 ]; then
                     echo 19000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
                     echo 1017600 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
                     echo "80" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
                     echo 1382400 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
-                    echo 800000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis
                     echo "19000 1382400:39000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
                     echo "85 1382400:90 1747200:80" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
                     # HMP Task packing settings for 8976
