@@ -1117,13 +1117,13 @@ case "$target" in
                 echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
                 echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/sampling_down_factor
                 echo 883200 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+                echo 60000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis
 
                 if [ $panel -gt 1080 ]; then
                     echo 19000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
                     echo 1017600 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
                     echo "80" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
                     echo 1382400 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
-                    echo 800000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis
                     echo "19000 1382400:39000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
                     echo "85 1382400:90 1747200:80" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
                     # HMP Task packing settings for 8976
@@ -1192,6 +1192,13 @@ case "$target" in
                     echo N > /sys/module/lpm_levels/system/a72/cpu7/retention/idle_enabled
                 fi
 
+		# Disable l2-pc and l2-gdhs low power modes
+
+		echo N > /sys/module/lpm_levels/system/a53/a53-l2-gdhs/idle_enabled
+		echo N > /sys/module/lpm_levels/system/a72/a72-l2-gdhs/idle_enabled
+		echo N > /sys/module/lpm_levels/system/a53/a53-l2-pc/idle_enabled
+		echo N > /sys/module/lpm_levels/system/a72/a72-l2-pc/idle_enabled
+
                 # Enable Low power modes
                 echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
 
@@ -1214,6 +1221,13 @@ case "$target" in
 
                 # Enable timer migration to little cluster
                 echo 1 > /proc/sys/kernel/power_aware_timer_migration
+
+		case "$soc_id" in
+			"277" | "278")
+			# Start energy-awareness for 8976
+			start energy-awareness
+		;;
+		esac
             ;;
         esac
     ;;

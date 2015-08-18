@@ -35,4 +35,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
          carrier provisioning. If false: hard disabled. If true: then depends on carrier
          provisioning, availability etc -->
 
+<!-- If Voice Radio Technology is RIL_RADIO_TECHNOLOGY_LTE:14 this is the value
+         that should be used instead. A value of RIL_RADIO_TECHNOLOGY_UNKNOWN:0 means
+         there is no replacement value and VoLTE is assumed to be supported -->
+    <integer name="config_volte_replacement_rat">6</integer>
 </resources>
