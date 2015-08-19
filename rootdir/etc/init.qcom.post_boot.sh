@@ -821,6 +821,7 @@ case "$target" in
                     echo 68 > /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres
                     echo 40 > /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres
                     echo 100 > /sys/devices/system/cpu/cpu0/core_ctl/offline_delay_ms
+                    echo 1 > /sys/devices/system/cpu/cpu0/core_ctl/is_big_cluster
 
 		    case "$revision" in
 			"3.0")
@@ -1009,6 +1010,7 @@ case "$target" in
                 echo 68 > /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres
                 echo 40 > /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres
                 echo 100 > /sys/devices/system/cpu/cpu0/core_ctl/offline_delay_ms
+                echo 1 > /sys/devices/system/cpu/cpu0/core_ctl/is_big_cluster
 
                 # Enable dynamic clock gating
                 echo 1 > /sys/module/lpm_levels/lpm_workarounds/dynamic_clock_gating
@@ -1218,6 +1220,7 @@ case "$target" in
                 echo 68 > /sys/devices/system/cpu/cpu4/core_ctl/busy_up_thres
                 echo 40 > /sys/devices/system/cpu/cpu4/core_ctl/busy_down_thres
                 echo 100 > /sys/devices/system/cpu/cpu4/core_ctl/offline_delay_ms
+                echo 1 > /sys/devices/system/cpu/cpu4/core_ctl/is_big_cluster
 
                 # Enable timer migration to little cluster
                 echo 1 > /proc/sys/kernel/power_aware_timer_migration
