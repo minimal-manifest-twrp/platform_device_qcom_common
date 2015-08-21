@@ -264,6 +264,9 @@ on mmi
     chown system root /persist/sensors/sensors_settings
     mkdir /data/misc/sensors 775 system root
 
+    #Create NETMGR daemon socket area
+    mkdir /dev/socket/netmgr 0750 radio radio
+
     #Start the following services needed for fftm
     start qcom-usb-sh
     start logd
@@ -296,6 +299,9 @@ on ffbm
     # this in another action so that the load will be scheduled after the prior
     # issued fs triggers have completed.
     trigger load_all_props_action
+
+    # Remove a file to wake up anything waiting for firmware.
+    trigger firmware_mounts_complete
 
     trigger early-boot
     trigger mmi
