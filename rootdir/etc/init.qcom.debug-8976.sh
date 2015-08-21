@@ -124,6 +124,19 @@ enable_msm8976_dcc_config()
     echo 0x0B1D200C 1  > $DCC_PATH/config
     echo 0x0B1D2030 1  > $DCC_PATH/config
 
+    echo 0x06BA2C14 1  > $DCC_PATH/config
+    i=1
+    while [ $i -le 9 ];do
+        echo 0x06BA0038 1 > $DCC_PATH/config
+        i=$(($i+1))
+    done
+
+    i=1
+    while [ $i -le 100 ]; do
+        echo 0x06BA0040 2 > $DCC_PATH/config
+        i=$(($i+1))
+    done
+
     echo  1 > $DCC_PATH/enable
 }
 
