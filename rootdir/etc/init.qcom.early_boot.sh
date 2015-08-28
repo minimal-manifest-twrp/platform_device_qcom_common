@@ -169,7 +169,7 @@ case "$target" in
          case "$soc_hwplatform" in
             *)
             case "$soc_hwid" in
-                "264|278")
+                264|278)
                     setprop ro.sf.lcd_density 480
                 ;;
                 *)
