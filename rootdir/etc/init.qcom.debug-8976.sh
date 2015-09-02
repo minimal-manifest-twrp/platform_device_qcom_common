@@ -247,8 +247,37 @@ enable_stm_events_8976()
     echo 0x0606c0bc 0x0 > /sys/bus/coresight/devices/coresight-hwevent/setreg
 }
 
+dump_debugui_regs()
+{
+echo 0 > /sys/bus/coresight/devices/coresight-dbgui/capture_enable
+echo 0x2A > /sys/bus/coresight/devices/coresight-dbgui/nr_apb_regs
+echo 0x20 > /sys/bus/coresight/devices/coresight-dbgui/addr_idx
+echo 0x80BA2C14 > /sys/bus/coresight/devices/coresight-dbgui/addr_val
+echo 0x21 > /sys/bus/coresight/devices/coresight-dbgui/addr_idx
+echo 0x80BA0038 > /sys/bus/coresight/devices/coresight-dbgui/addr_val
+echo 0x22 > /sys/bus/coresight/devices/coresight-dbgui/addr_idx
+echo 0x80BA0038 > /sys/bus/coresight/devices/coresight-dbgui/addr_val
+echo 0x23 > /sys/bus/coresight/devices/coresight-dbgui/addr_idx
+echo 0x80BA0038 > /sys/bus/coresight/devices/coresight-dbgui/addr_val
+echo 0x24 > /sys/bus/coresight/devices/coresight-dbgui/addr_idx
+echo 0x80BA0038 > /sys/bus/coresight/devices/coresight-dbgui/addr_val
+echo 0x25 > /sys/bus/coresight/devices/coresight-dbgui/addr_idx
+echo 0x80BA0038 > /sys/bus/coresight/devices/coresight-dbgui/addr_val
+echo 0x26 > /sys/bus/coresight/devices/coresight-dbgui/addr_idx
+echo 0x80BA0038 > /sys/bus/coresight/devices/coresight-dbgui/addr_val
+echo 0x27 > /sys/bus/coresight/devices/coresight-dbgui/addr_idx
+echo 0x80BA0038 > /sys/bus/coresight/devices/coresight-dbgui/addr_val
+echo 0x28 > /sys/bus/coresight/devices/coresight-dbgui/addr_idx
+echo 0x80BA0038 > /sys/bus/coresight/devices/coresight-dbgui/addr_val
+echo 0x29 > /sys/bus/coresight/devices/coresight-dbgui/addr_idx
+echo 0x80BA0038 > /sys/bus/coresight/devices/coresight-dbgui/addr_val
+echo 1 > /sys/bus/coresight/devices/coresight-dbgui/capture_enable
+}
+
+
 enable_msm8976_debug()
 {
 enable_msm8976_dcc_config
 enable_stm_events_8976
+dump_debugui_regs
 }
