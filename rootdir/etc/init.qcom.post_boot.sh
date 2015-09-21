@@ -1138,6 +1138,8 @@ case "$target" in
                     echo 20 > /sys/devices/system/cpu/cpu5/sched_mostly_idle_load
                     echo 20 > /sys/devices/system/cpu/cpu6/sched_mostly_idle_load
                     echo 20 > /sys/devices/system/cpu/cpu7/sched_mostly_idle_load
+                    #set texture cache size for resolution greater than 1080p
+                    setprop ro.hwui.texture_cache_size 72
                 else
                     echo 39000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
                     echo 806400 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
@@ -1655,6 +1657,10 @@ case "$target" in
         echo 5120 > /proc/sys/vm/min_free_kbytes
      ;;
 esac
+#Set texture_cache_size property if not defined
+if [ -z `getprop ro.hwui.texture_cache_size` ]; then
+   setprop ro.hwui.texture_cache_size 40
+fi
 
 if [ -f /sys/devices/soc0/select_image ]; then
     # Let kernel know our image version/variant/crm_version
