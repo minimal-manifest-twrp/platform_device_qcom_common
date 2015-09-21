@@ -1194,12 +1194,13 @@ case "$target" in
                     echo N > /sys/module/lpm_levels/system/a72/cpu7/retention/idle_enabled
                 fi
 
-		# Disable l2-pc and l2-gdhs low power modes
-
-		echo N > /sys/module/lpm_levels/system/a53/a53-l2-gdhs/idle_enabled
-		echo N > /sys/module/lpm_levels/system/a72/a72-l2-gdhs/idle_enabled
-		echo N > /sys/module/lpm_levels/system/a53/a53-l2-pc/idle_enabled
-		echo N > /sys/module/lpm_levels/system/a72/a72-l2-pc/idle_enabled
+		if [ `cat /sys/devices/soc0/revision` == "1.0" ]; then
+		    # Disable l2-pc and l2-gdhs low power modes
+		    echo N > /sys/module/lpm_levels/system/a53/a53-l2-gdhs/idle_enabled
+		    echo N > /sys/module/lpm_levels/system/a72/a72-l2-gdhs/idle_enabled
+		    echo N > /sys/module/lpm_levels/system/a53/a53-l2-pc/idle_enabled
+		    echo N > /sys/module/lpm_levels/system/a72/a72-l2-pc/idle_enabled
+		fi
 
                 # Enable Low power modes
                 echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
