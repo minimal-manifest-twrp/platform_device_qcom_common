@@ -846,6 +846,12 @@ case "$target" in
         elif [ "$ProductName" == "msm8952_64" ] || [ "$ProductName" == "msm8952_64_LMT" ]; then
             echo 1 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
             echo 81250 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
+            MemTotalStr=`cat /proc/meminfo | grep MemTotal`
+            MemTotal=${MemTotalStr:16:8}
+            if [ $MemTotal -le 2097152 ]; then
+                chmod 660 /sys/module/lowmemorykiller/parameters/minfree
+                echo "14746,18432,22118,25805,40000,55000" > /sys/module/lowmemorykiller/parameters/minfree
+            fi
         fi
 
         if [ -f /sys/devices/soc0/soc_id ]; then
