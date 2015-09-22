@@ -71,7 +71,7 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
     } else
         property_set(PROP_LCDDENSITY, "320");
 
-    if (msm_id == 266 || msm_id == 278) {
+    if (msm_id == 266 || msm_id == 278 || msm_id == 277 || msm_id == 274) {
         property_set("media.msm8956hw", "1");
         property_set("media.settings.xml", "/etc/media_profiles_8956.xml");
     }
