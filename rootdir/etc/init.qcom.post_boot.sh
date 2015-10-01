@@ -1038,22 +1038,8 @@ case "$target" in
                 echo 95 > /proc/sys/kernel/sched_upmigrate
                 echo 85 > /proc/sys/kernel/sched_downmigrate
 
-                if [ $panel -gt 1080 ]; then
-                    echo 2 > /proc/sys/kernel/sched_window_stats_policy
-                    echo 5 > /proc/sys/kernel/sched_ravg_hist_size
-                else
-                    echo 3 > /proc/sys/kernel/sched_window_stats_policy
-                    echo 3 > /proc/sys/kernel/sched_ravg_hist_size
-
-                    echo 0 > /sys/devices/system/cpu/cpu0/sched_prefer_idle
-                    echo 0 > /sys/devices/system/cpu/cpu1/sched_prefer_idle
-                    echo 0 > /sys/devices/system/cpu/cpu2/sched_prefer_idle
-                    echo 0 > /sys/devices/system/cpu/cpu3/sched_prefer_idle
-                    echo 0 > /sys/devices/system/cpu/cpu4/sched_prefer_idle
-                    echo 0 > /sys/devices/system/cpu/cpu5/sched_prefer_idle
-                    echo 0 > /sys/devices/system/cpu/cpu6/sched_prefer_idle
-                    echo 0 > /sys/devices/system/cpu/cpu7/sched_prefer_idle
-                fi
+                echo 2 > /proc/sys/kernel/sched_window_stats_policy
+                echo 5 > /proc/sys/kernel/sched_ravg_hist_size
 
                 echo 3 > /sys/devices/system/cpu/cpu0/sched_mostly_idle_nr_run
                 echo 3 > /sys/devices/system/cpu/cpu1/sched_mostly_idle_nr_run
@@ -1128,42 +1114,26 @@ case "$target" in
                 echo 60000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis
 
                 if [ $panel -gt 1080 ]; then
-                    echo 19000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
-                    echo 1017600 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
-                    echo "80" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
-                    echo 1382400 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
-                    echo "19000 1382400:39000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
-                    echo "85 1382400:90 1747200:80" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
-                    # HMP Task packing settings for 8976
-                    echo 30 > /proc/sys/kernel/sched_small_task
-                    echo 20 > /sys/devices/system/cpu/cpu0/sched_mostly_idle_load
-                    echo 20 > /sys/devices/system/cpu/cpu1/sched_mostly_idle_load
-                    echo 20 > /sys/devices/system/cpu/cpu2/sched_mostly_idle_load
-                    echo 20 > /sys/devices/system/cpu/cpu3/sched_mostly_idle_load
-                    echo 20 > /sys/devices/system/cpu/cpu4/sched_mostly_idle_load
-                    echo 20 > /sys/devices/system/cpu/cpu5/sched_mostly_idle_load
-                    echo 20 > /sys/devices/system/cpu/cpu6/sched_mostly_idle_load
-                    echo 20 > /sys/devices/system/cpu/cpu7/sched_mostly_idle_load
                     #set texture cache size for resolution greater than 1080p
                     setprop ro.hwui.texture_cache_size 72
-                else
-                    echo 39000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
-                    echo 806400 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
-                    echo "1 691200:90" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
-                    echo 1190400 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
-                    echo "19000 1190400:39000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
-                    echo "85 1190400:90 1747200:80" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
-                    # HMP Task packing settings for 8976
-                    echo 20 > /proc/sys/kernel/sched_small_task
-                    echo 30 > /sys/devices/system/cpu/cpu0/sched_mostly_idle_load
-                    echo 30 > /sys/devices/system/cpu/cpu1/sched_mostly_idle_load
-                    echo 30 > /sys/devices/system/cpu/cpu2/sched_mostly_idle_load
-                    echo 30 > /sys/devices/system/cpu/cpu3/sched_mostly_idle_load
-                    echo 30 > /sys/devices/system/cpu/cpu4/sched_mostly_idle_load
-                    echo 30 > /sys/devices/system/cpu/cpu5/sched_mostly_idle_load
-                    echo 30 > /sys/devices/system/cpu/cpu6/sched_mostly_idle_load
-                    echo 30 > /sys/devices/system/cpu/cpu7/sched_mostly_idle_load
                 fi
+
+                echo 19000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
+                echo 1017600 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
+                echo "80" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
+                echo 1382400 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
+                echo "19000 1382400:39000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
+                echo "85 1382400:90 1747200:80" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
+                # HMP Task packing settings for 8976
+                echo 30 > /proc/sys/kernel/sched_small_task
+                echo 20 > /sys/devices/system/cpu/cpu0/sched_mostly_idle_load
+                echo 20 > /sys/devices/system/cpu/cpu1/sched_mostly_idle_load
+                echo 20 > /sys/devices/system/cpu/cpu2/sched_mostly_idle_load
+                echo 20 > /sys/devices/system/cpu/cpu3/sched_mostly_idle_load
+                echo 20 > /sys/devices/system/cpu/cpu4/sched_mostly_idle_load
+                echo 20 > /sys/devices/system/cpu/cpu5/sched_mostly_idle_load
+                echo 20 > /sys/devices/system/cpu/cpu6/sched_mostly_idle_load
+                echo 20 > /sys/devices/system/cpu/cpu7/sched_mostly_idle_load
 
                 # re-enable thermal & BCL core_control now
                 echo 1 > /sys/module/msm_thermal/core_control/enabled
