@@ -281,7 +281,9 @@ on post-fs-data
     mkdir /data/nfc/param 0770 nfc nfc
 
     # Sensor
-    mkdir /persist/sensors 0770 system system
+    mkdir /persist/sensors 0775 system system
+    chmod 664 /persist/sensors/sensors_settings
+    chown system root /persist/sensors/sensors_settings
 
     # RIDL data
     mkdir /data/misc/SelfHost/ 0710 system shell
