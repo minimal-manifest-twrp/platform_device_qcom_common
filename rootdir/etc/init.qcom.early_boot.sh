@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+# Copyright (c) 2012-2015, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -169,9 +169,18 @@ case "$target" in
          case "$soc_hwplatform" in
             *)
             case "$soc_hwid" in
-                264|278)
+                264)
                     setprop ro.sf.lcd_density 480
-                ;;
+                    ;;
+                278)
+                    setprop ro.sf.lcd_density 480
+                    setprop media.msm8956hw 1
+                    setprop media.settings.xml /etc/media_profiles_8956.xml
+                    ;;
+                266)
+                    setprop media.msm8956hw 1
+                    setprop media.settings.xml /etc/media_profiles_8956.xml
+                    ;;
                 *)
                     setprop ro.sf.lcd_density 320
             esac
