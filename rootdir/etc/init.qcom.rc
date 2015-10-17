@@ -619,9 +619,10 @@ service iprenew_p2p /system/bin/dhcpcd -n
     oneshot
 
 service ptt_socket_app /system/bin/ptt_socket_app -d
-    class main
+    class late_start
     user root
     group root
+    oneshot
 
 service ptt_ffbm /system/bin/ptt_socket_app -f -d
     user root
@@ -640,9 +641,10 @@ on property:wifi.ftmd.load=true
     insmod /system/lib/modules/wlan.ko con_mode=5
 
 service cnss_diag /system/bin/cnss_diag --q
-    class main
+    class late_start
     user root
     group root
+    oneshot
 
 service cnss-daemon /system/bin/cnss-daemon -n -l
     class late_start
