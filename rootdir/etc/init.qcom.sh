@@ -309,7 +309,7 @@ case "$target" in
                             ;;
                        "QRD")
                             case "$platform_subtype_id" in
-                                 "0")
+                                 "0" | "64")
                                       setprop qemu.hw.mainkeys 0
                                       ;;
                             esac
