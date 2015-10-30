@@ -44,6 +44,11 @@ if [ -f /sys/devices/soc0/platform_version ]; then
 else
     soc_hwver=`cat /sys/devices/system/soc/soc0/platform_version` 2> /dev/null
 fi
+if [ -f /sys/devices/soc0/platform_subtype ]; then
+    soc_hwsubtype=`cat /sys/devices/soc0/platform_subtype` 2> /dev/null
+else
+    soc_hwsubtype=`cat /sys/devices/system/soc/soc0/platform_subtype` 2> /dev/null
+fi
 
 target=`getprop ro.board.platform`
 case "$target" in
@@ -166,14 +171,16 @@ case "$target" in
         esac
         ;;
       "msm8952")
-         case "$soc_hwplatform" in
-            *)
-            case "$soc_hwid" in
+        case "$soc_hwid" in
                 264)
                     setprop ro.sf.lcd_density 480
                     ;;
                 278)
-                    setprop ro.sf.lcd_density 480
+                    if [ "$soc_hwplatform" == 'QRD' ] && [ "$soc_hwsubtype" == "POLARIS" ]; then
+                        setprop ro.sf.lcd_density 320
+                    else
+                        setprop ro.sf.lcd_density 480
+                    fi
                     setprop media.msm8956hw 1
                     setprop media.settings.xml /etc/media_profiles_8956.xml
                     ;;
@@ -181,10 +188,8 @@ case "$target" in
                     setprop media.msm8956hw 1
                     setprop media.settings.xml /etc/media_profiles_8956.xml
                     ;;
-                *)
-                    setprop ro.sf.lcd_density 320
-            esac
-            ;;
+            *)
+                setprop ro.sf.lcd_density 320
         esac
         ;;
 esac
