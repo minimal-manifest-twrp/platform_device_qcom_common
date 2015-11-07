@@ -254,3 +254,10 @@ then
         set_perms $file/mode system.graphics 0664
 fi
 
+reason_value=`cat /proc/sys/kernel/boot_reason`
+if [ "$reason_value" = "3" ]; then
+    setprop ro.alarm_boot true
+    setprop debug.sf.nobootanimation 1
+else
+    setprop ro.alarm_boot false
+fi
