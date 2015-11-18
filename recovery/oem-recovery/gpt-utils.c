@@ -47,7 +47,7 @@
 #define BLK_DEV_FILE    "/dev/block/mmcblk0"
 
 /* list the names of the backed-up partitions to be swapped */
-#define PTN_SWAP_LIST       "sbl1", "rpm", "tz", "aboot"
+#define PTN_SWAP_LIST       "sbl1", "rpm", "tz", "aboot", "devcfg", "cmnlib64", "cmnlib", "keymaster"
 /* extension used for the backup partitions - tzbak, abootbak, etc. */
 #define BAK_PTN_NAME_EXT    "bak"
 
