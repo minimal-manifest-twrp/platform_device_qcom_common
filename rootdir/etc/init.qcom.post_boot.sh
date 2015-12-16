@@ -1210,6 +1210,11 @@ case "$target" in
 			start energy-awareness
 		;;
 		esac
+
+		#enable sched colocation and colocation inheritance
+		echo 130 > /proc/sys/kernel/sched_grp_upmigrate
+		echo 110 > /proc/sys/kernel/sched_grp_downmigrate
+		echo   1 > /proc/sys/kernel/sched_enable_thread_grouping
             ;;
         esac
     ;;
