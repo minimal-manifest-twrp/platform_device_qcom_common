@@ -897,6 +897,8 @@ case "$target" in
                 echo 0 > /sys/devices/system/cpu/cpu6/sched_prefer_idle
                 echo 0 > /sys/devices/system/cpu/cpu7/sched_prefer_idle
 
+                echo 0 > /proc/sys/kernel/sched_boost
+
                 for devfreq_gov in /sys/class/devfreq/qcom,mincpubw*/governor
                 do
                     echo "cpufreq" > $devfreq_gov
@@ -1134,6 +1136,8 @@ case "$target" in
                 echo 20 > /sys/devices/system/cpu/cpu5/sched_mostly_idle_load
                 echo 20 > /sys/devices/system/cpu/cpu6/sched_mostly_idle_load
                 echo 20 > /sys/devices/system/cpu/cpu7/sched_mostly_idle_load
+
+                echo 0 > /proc/sys/kernel/sched_boost
 
                 # re-enable thermal & BCL core_control now
                 echo 1 > /sys/module/msm_thermal/core_control/enabled
