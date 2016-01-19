@@ -982,3 +982,11 @@ service bugreport /system/bin/dumpstate -d -p -B \
     class main
     disabled
     oneshot
+
+#add poweroffhandler
+service poweroffhandler /system/bin/poweroffhandler
+    class core
+    user media
+    group graphics audio
+    disabled
+    oneshot
