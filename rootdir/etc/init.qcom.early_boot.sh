@@ -172,7 +172,7 @@ case "$target" in
         ;;
       "msm8952")
         case "$soc_hwid" in
-                264)
+                264|274|277)
                     setprop ro.sf.lcd_density 480
                     ;;
                 278)
