@@ -267,6 +267,11 @@ on mmi
     #Create NETMGR daemon socket area
     mkdir /dev/socket/netmgr 0750 radio radio
 
+    #Copy qcril.db if needed for RIL
+    copy /system/vendor/qcril.db /data/misc/radio/qcril.db
+    chown radio radio /data/misc/radio/qcril.db
+    write /data/misc/radio/db_check_done 1
+
     #Start the following services needed for fftm
     start qcom-usb-sh
     start logd
