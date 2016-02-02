@@ -1122,7 +1122,7 @@ case "$target" in
 
                 echo 59000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
                 echo 1305600 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
-                echo "691200:60 806400:80" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
+                echo "1 691200:80" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
                 echo 1382400 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq
                 echo "19000 1382400:39000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
                 echo "85 1382400:90 1747200:80" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads
