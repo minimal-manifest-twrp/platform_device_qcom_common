@@ -968,25 +968,6 @@ case "$target" in
                 echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/sampling_down_factor
                 echo 806400 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
 
-                # re-enable thermal & BCL core_control now
-                echo 1 > /sys/module/msm_thermal/core_control/enabled
-                for mode in /sys/devices/soc.0/qcom,bcl.*/mode
-                do
-                    echo -n disable > $mode
-                done
-                for hotplug_mask in /sys/devices/soc.0/qcom,bcl.*/hotplug_mask
-                do
-                    echo $bcl_hotplug_mask > $hotplug_mask
-                done
-                for hotplug_soc_mask in /sys/devices/soc.0/qcom,bcl.*/hotplug_soc_mask
-                do
-                    echo $bcl_soc_hotplug_mask > $hotplug_soc_mask
-                done
-                for mode in /sys/devices/soc.0/qcom,bcl.*/mode
-                do
-                    echo -n enable > $mode
-                done
-
                 # Bring up all cores online
                 echo 1 > /sys/devices/system/cpu/cpu1/online
                 echo 1 > /sys/devices/system/cpu/cpu2/online
@@ -1019,6 +1000,25 @@ case "$target" in
                 echo 40 > /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres
                 echo 100 > /sys/devices/system/cpu/cpu0/core_ctl/offline_delay_ms
                 echo 1 > /sys/devices/system/cpu/cpu0/core_ctl/is_big_cluster
+
+                # re-enable thermal & BCL core_control now
+                echo 1 > /sys/module/msm_thermal/core_control/enabled
+                for mode in /sys/devices/soc.0/qcom,bcl.*/mode
+                do
+                    echo -n disable > $mode
+                done
+                for hotplug_mask in /sys/devices/soc.0/qcom,bcl.*/hotplug_mask
+                do
+                    echo $bcl_hotplug_mask > $hotplug_mask
+                done
+                for hotplug_soc_mask in /sys/devices/soc.0/qcom,bcl.*/hotplug_soc_mask
+                do
+                    echo $bcl_soc_hotplug_mask > $hotplug_soc_mask
+                done
+                for mode in /sys/devices/soc.0/qcom,bcl.*/mode
+                do
+                    echo -n enable > $mode
+                done
 
                 # Enable dynamic clock gating
                 echo 1 > /sys/module/lpm_levels/lpm_workarounds/dynamic_clock_gating
@@ -1139,25 +1139,6 @@ case "$target" in
 
                 echo 0 > /proc/sys/kernel/sched_boost
 
-                # re-enable thermal & BCL core_control now
-                echo 1 > /sys/module/msm_thermal/core_control/enabled
-                for mode in /sys/devices/soc.0/qcom,bcl.*/mode
-                do
-                    echo -n disable > $mode
-                done
-                for hotplug_mask in /sys/devices/soc.0/qcom,bcl.*/hotplug_mask
-                do
-                    echo $bcl_hotplug_mask > $hotplug_mask
-                done
-                for hotplug_soc_mask in /sys/devices/soc.0/qcom,bcl.*/hotplug_soc_mask
-                do
-                    echo $bcl_soc_hotplug_mask > $hotplug_soc_mask
-                done
-                for mode in /sys/devices/soc.0/qcom,bcl.*/mode
-                do
-                    echo -n enable > $mode
-                done
-
                 # Bring up all cores online
                 echo 1 > /sys/devices/system/cpu/cpu1/online
                 echo 1 > /sys/devices/system/cpu/cpu2/online
@@ -1204,6 +1185,25 @@ case "$target" in
                 echo 40 > /sys/devices/system/cpu/cpu4/core_ctl/busy_down_thres
                 echo 100 > /sys/devices/system/cpu/cpu4/core_ctl/offline_delay_ms
                 echo 1 > /sys/devices/system/cpu/cpu4/core_ctl/is_big_cluster
+
+                # re-enable thermal & BCL core_control now
+                echo 1 > /sys/module/msm_thermal/core_control/enabled
+                for mode in /sys/devices/soc.0/qcom,bcl.*/mode
+                do
+                    echo -n disable > $mode
+                done
+                for hotplug_mask in /sys/devices/soc.0/qcom,bcl.*/hotplug_mask
+                do
+                    echo $bcl_hotplug_mask > $hotplug_mask
+                done
+                for hotplug_soc_mask in /sys/devices/soc.0/qcom,bcl.*/hotplug_soc_mask
+                do
+                    echo $bcl_soc_hotplug_mask > $hotplug_soc_mask
+                done
+                for mode in /sys/devices/soc.0/qcom,bcl.*/mode
+                do
+                    echo -n enable > $mode
+                done
 
                 # Enable timer migration to little cluster
                 echo 1 > /proc/sys/kernel/power_aware_timer_migration
