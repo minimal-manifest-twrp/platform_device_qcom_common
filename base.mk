@@ -609,6 +609,9 @@ VT_QTI_PERMISSIONS := qti_permissions.xml
 #IMS SETTINGS
 IMS_SETTINGS := imssettings
 
+#IMS Extension module for Android Telephony
+IMS_EXT := ims-ext-common
+
 #RCS
 RCS := rcs_service_aidl
 RCS += rcs_service_aidl.xml
@@ -745,6 +748,7 @@ PRODUCT_PACKAGES += $(IMS_SETTINGS)
 PRODUCT_PACKAGES += $(CRDA)
 PRODUCT_PACKAGES += $(WLAN)
 PRODUCT_PACKAGES += $(IPACM)
+PRODUCT_PACKAGES += $(IMS_EXT)
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
