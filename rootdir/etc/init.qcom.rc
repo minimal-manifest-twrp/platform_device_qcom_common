@@ -765,12 +765,6 @@ service wifi-crda /system/bin/sh /system/etc/init.crda.sh
    disabled
    oneshot
 
-service config-zram /system/bin/sh /system/etc/init.qcom.zram.sh
-   class late_start
-   user root
-   disabled
-   oneshot
-
 service atfwd /system/bin/ATFWD-daemon
     class late_start
     user system
@@ -780,7 +774,6 @@ service atfwd /system/bin/ATFWD-daemon
 on property:sys.boot_completed=1
     start qcom-post-boot
     start qti-testscripts
-    start config-zram
     start atfwd
 
 service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf

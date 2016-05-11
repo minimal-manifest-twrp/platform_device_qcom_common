@@ -258,7 +258,6 @@ INIT += init.mdm.sh
 INIT += init.qcom.uicc.sh
 INIT += fstab.qcom
 INIT += init.qcom.debug.sh
-INIT += init.qcom.zram.sh
 INIT += init.qti.synaptics_dsx_qhd.sh
 INIT += init.qcom.bms.sh
 INIT += init.recovery.qcom.rc
