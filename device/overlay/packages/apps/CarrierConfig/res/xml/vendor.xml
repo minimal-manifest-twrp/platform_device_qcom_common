@@ -200,4 +200,16 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="450" mnc="08">
         <boolean name="allow_video_call_in_low_battery" value="false" />
     </carrier_config>
+
+    <carrier_config mcc="460" mnc="03">
+        <boolean name="ascii_7_bit_support_for_long_message" value="true" />
+    </carrier_config>
+
+    <carrier_config mcc="460" mnc="11">
+        <boolean name="ascii_7_bit_support_for_long_message" value="true" />
+    </carrier_config>
+
+    <carrier_config mcc="460" mnc="12">
+        <boolean name="ascii_7_bit_support_for_long_message" value="true" />
+    </carrier_config>
 </carrier_config_list>
