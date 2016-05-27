@@ -158,8 +158,11 @@ CURL += curl
 
 #CM
 CM := CMFileManager
-CM += Trebuchet
+#CM += Trebuchet
 CM += Eleven
+
+#Default Launcher
+DELAUN := Launcher3
 
 #DASH
 DASH := libdashplayer
@@ -686,6 +689,7 @@ PRODUCT_PACKAGES += $(CONNECTIVITY)
 PRODUCT_PACKAGES += $(CHARGER)
 PRODUCT_PACKAGES += $(CURL)
 PRODUCT_PACKAGES += $(CM)
+PRODUCT_PACKAGES += $(DELAUN)
 PRODUCT_PACKAGES += $(RCS)
 PRODUCT_PACKAGES += $(DASH)
 PRODUCT_PACKAGES += $(DATA_OS)
