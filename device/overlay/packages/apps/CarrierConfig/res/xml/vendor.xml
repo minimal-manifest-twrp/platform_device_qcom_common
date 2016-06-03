@@ -322,6 +322,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <boolean name="ascii_7_bit_support_for_long_message" value="true" />
         <boolean name="config_show_orig_dial_string_for_cdma" value="true" />
         <boolean name="allow_emergency_numbers_in_call_log_bool" value="true"/>
+        <boolean name="cdma_cw_cf_enabled_bool" value="true" />
     </carrier_config>
 
     <carrier_config mcc="460" mnc="04">
@@ -362,11 +363,13 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <boolean name="ascii_7_bit_support_for_long_message" value="true" />
         <boolean name="config_show_orig_dial_string_for_cdma" value="true" />
         <boolean name="allow_emergency_numbers_in_call_log_bool" value="true"/>
+        <boolean name="cdma_cw_cf_enabled_bool" value="true" />
     </carrier_config>
 
     <carrier_config mcc="460" mnc="12">
         <boolean name="ascii_7_bit_support_for_long_message" value="true" />
         <boolean name="config_show_orig_dial_string_for_cdma" value="true" />
         <boolean name="allow_emergency_numbers_in_call_log_bool" value="true"/>
+        <boolean name="cdma_cw_cf_enabled_bool" value="true" />
     </carrier_config>
 </carrier_config_list>
