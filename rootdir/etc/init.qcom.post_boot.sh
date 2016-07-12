@@ -1219,6 +1219,9 @@ case "$target" in
 		    echo N > /sys/module/lpm_levels/system/a72/a72-l2-pc/idle_enabled
 		fi
 
+                # Enable LPM Prediction
+                echo 1 > /sys/module/lpm_levels/parameters/lpm_prediction
+
                 # Enable Low power modes
                 echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
 
