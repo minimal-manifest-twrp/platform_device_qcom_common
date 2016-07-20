@@ -51,6 +51,11 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <boolean name="allow_video_call_in_low_battery" value="true" />
     </carrier_config>
 
+    <carrier_config mcc="222" mnc="01">
+        <boolean name="config_display_wfc_mode" value="false" />
+        <int name="carrier_default_wfc_ims_mode_int" value="2" />
+    </carrier_config>
+
     <carrier_config mcc="405" mnc="840">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
