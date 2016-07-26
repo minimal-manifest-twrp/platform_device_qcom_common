@@ -100,6 +100,7 @@ on boot
     mkdir /persist/drm 0770 system system
     mkdir /persist/bluetooth 0770 bluetooth bluetooth
     mkdir /persist/alarm 0770 system system
+    mkdir /persist/misc 0770 system system
 
     #Create NETMGR daemon socket area
     mkdir /dev/socket/netmgr 0750 radio radio
@@ -865,8 +866,7 @@ service hcidump /system/bin/sh /system/etc/hcidump.sh
 
 service charger /charger
     class charger
-    group graphics
-    group system
+    group graphics system
     seclabel u:r:healthd:s0
 
 service ssr_diag /system/bin/ssr_diag

@@ -288,148 +288,16 @@ case "$target" in
                             ;;
                   esac
                   ;;
-             "278")
+             "266" | "274" | "277" | "278")
                   case "$hw_platform" in
-                       "Surf")
-                            case "$platform_subtype_id" in
-                                 "0")
-                                    if [ $panel_xres -eq 1440 ]; then
-                                         setprop qemu.hw.mainkeys 0
-                                    fi
-                                    ;;
-                            esac
-                            ;;
-                       "MTP")
-                            case "$platform_subtype_id" in
-                                 "0")
-                                      setprop qemu.hw.mainkeys 0
-                                      ;;
-                            esac
-                            ;;
-                       "QRD")
-                            case "$platform_subtype_id" in
-                                 "0" | "64")
-                                      setprop qemu.hw.mainkeys 0
-                                      ;;
-                            esac
-                            ;;
-                       "RCM")
-                            case "$platform_subtype_id" in
-                                 "0")
-                                    if [ $panel_xres -eq 1440 ]; then
-                                         setprop qemu.hw.mainkeys 0
-                                    fi
-                                    ;;
-                            esac
-                            ;;
-                  esac
-                  ;;
-             "266")
-                  case "$hw_platform" in
-                       "Surf")
-                            case "$platform_subtype_id" in
-                                 "0")
-                                    if [ $panel_xres -eq 1440 ]; then
-                                         setprop qemu.hw.mainkeys 0
-                                    fi
-                                    ;;
-                            esac
-                            ;;
-                       "MTP")
-                            case "$platform_subtype_id" in
-                                 "0")
-                                      setprop qemu.hw.mainkeys 0
-                                      ;;
-                            esac
-                            ;;
-                       "QRD")
-                            case "$platform_subtype_id" in
-                                 "0")
-                                      setprop qemu.hw.mainkeys 0
-                                      ;;
-                            esac
-                            ;;
-                       "RCM")
-                            case "$platform_subtype_id" in
-                                 "0")
-                                    if [ $panel_xres -eq 1440 ]; then
-                                         setprop qemu.hw.mainkeys 0
-                                    fi
-                                    ;;
-                            esac
-                            ;;
-                  esac
-                  ;;
-             "277")
-                  case "$hw_platform" in
-                       "Surf")
-                            case "$platform_subtype_id" in
-                                 "0")
-                                    if [ $panel_xres -eq 1440 ]; then
-                                         setprop qemu.hw.mainkeys 0
-                                    fi
-                                    ;;
-                            esac
-                            ;;
-                       "MTP")
-                            case "$platform_subtype_id" in
-                                 "0")
-                                      setprop qemu.hw.mainkeys 0
-                                      ;;
-                            esac
-                            ;;
-                       "QRD")
-                            case "$platform_subtype_id" in
-                                 "0")
-                                      setprop qemu.hw.mainkeys 0
-                                      ;;
-                            esac
-                            ;;
-                       "RCM")
-                            case "$platform_subtype_id" in
-                                 "0")
-                                    if [ $panel_xres -eq 1440 ]; then
-                                         setprop qemu.hw.mainkeys 0
-                                    fi
-                                    ;;
-                            esac
-                            ;;
-                  esac
-                  ;;
-             "274")
-                  case "$hw_platform" in
-                       "Surf")
-                            case "$platform_subtype_id" in
-                                 "0")
-                                    if [ $panel_xres -eq 1440 ]; then
-                                         setprop qemu.hw.mainkeys 0
-                                    fi
-                                    ;;
-                            esac
-                            ;;
-                       "MTP")
-                            case "$platform_subtype_id" in
-                                 "0")
-                                      setprop qemu.hw.mainkeys 0
-                                      ;;
-                            esac
-                            ;;
-                       "QRD")
-                            case "$platform_subtype_id" in
-                                 "0")
-                                      setprop qemu.hw.mainkeys 0
-                                      ;;
-                            esac
-                            ;;
-                       "RCM")
-                            case "$platform_subtype_id" in
-                                 "0")
-                                    if [ $panel_xres -eq 1440 ]; then
-                                         setprop qemu.hw.mainkeys 0
-                                    fi
-                                    ;;
-                            esac
-                            ;;
+                       "Surf" | "RCM")
+                           if [ $panel_xres -eq 1440 ]; then
+                               setprop qemu.hw.mainkeys 0
+                           fi
+                           ;;
+                       "MTP" | "QRD")
+                           setprop qemu.hw.mainkeys 0
+                           ;;
                   esac
                   ;;
         esac
@@ -439,17 +307,6 @@ case "$target" in
         ;;
     "msm8909")
         ;;
-esac
-
-bootmode=`getprop ro.bootmode`
-emmc_boot=`getprop ro.boot.emmc`
-case "$emmc_boot"
-    in "true")
-        if [ "$bootmode" != "charger" ]; then # start rmt_storage and rfs_access
-            start rmt_storage
-            start rfs_access
-        fi
-    ;;
 esac
 
 #
@@ -477,4 +334,6 @@ if [ "$prev_version_info" != "$cur_version_info" ]; then
     cp /firmware/verinfo/ver_info.txt /data/misc/radio/ver_info.txt
     chown radio.radio /data/misc/radio/ver_info.txt
 fi
+cp /firmware/image/modem_pr/mbn_ota.txt /data/misc/radio/modem_config
+chown radio.radio /data/misc/radio/modem_config/mbn_ota.txt
 echo 1 > /data/misc/radio/copy_complete
