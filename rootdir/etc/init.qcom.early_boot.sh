@@ -172,7 +172,7 @@ case "$target" in
         ;;
       "msm8952")
         case "$soc_hwid" in
-                264|274)
+                274)
                     setprop ro.sf.lcd_density 480
                     ;;
                 278)
@@ -200,6 +200,11 @@ case "$target" in
                             setprop media.msm8956.version 1
                         fi
                     fi
+                    ;;
+                264|289)
+                    setprop ro.sf.lcd_density 480
+                    # Vulkan is not supported for 8952 variants
+                    setprop persist.graphics.vulkan.disable true
                     ;;
             *)
                 setprop ro.sf.lcd_density 320
