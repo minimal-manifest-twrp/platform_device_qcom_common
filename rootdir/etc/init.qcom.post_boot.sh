@@ -1246,6 +1246,9 @@ case "$target" in
 
                 # Enable Low power modes
                 echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
+                # Disable L2 GDHS on 8976
+                echo N > /sys/module/lpm_levels/system/a53/a53-l2-gdhs/idle_enabled
+                echo N > /sys/module/lpm_levels/system/a72/a72-l2-gdhs/idle_enabled
 
                 # Enable sched guided freq control
                 echo 1 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/use_sched_load
