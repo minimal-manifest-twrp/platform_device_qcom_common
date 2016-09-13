@@ -49,6 +49,10 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
         <boolean name="allow_adding_apns_bool" value="true" />
         <boolean name="hide_preferred_network_type_bool" value="false" />
         <boolean name="allow_video_call_in_low_battery" value="true" />
+        <!-- Determines whether UI extensions for video calls should be used or not -->
+        <boolean name="video_call_use_ext" value="true" />
+        <!-- Determines if a customized video ui support is required or not -->
+        <boolean name="use_custom_video_ui" value="false" />
         <boolean name="config_hide_preview_in_vt_confcall" value="false" />
         <boolean name="config_carrier_cs_retry_available" value="false" />
         <!-- Controls modify call capabilities
@@ -65,6 +69,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="840">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -73,6 +79,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="854">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -81,6 +89,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="855">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -89,6 +99,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="856">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -97,6 +109,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="857">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -105,6 +119,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="858">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -113,6 +129,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="859">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -121,6 +139,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="860">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -129,6 +149,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="861">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -137,6 +159,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="862">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -145,6 +169,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="863">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -153,6 +179,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="864">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -161,6 +189,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="865">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -169,6 +199,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="866">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -177,6 +209,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="867">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -185,6 +219,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="868">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -193,6 +229,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="869">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -201,6 +239,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="870">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -209,6 +249,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="871">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -217,6 +259,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="872">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -225,6 +269,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="873">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
@@ -233,6 +279,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
     <carrier_config mcc="405" mnc="874">
         <boolean name="config_display_wfc_mode" value="false" />
         <int name="carrier_default_wfc_ims_mode_int" value="2" />
+        <boolean name="video_call_use_ext" value="false" />
+        <boolean name="use_custom_video_ui" value="true" />
         <boolean name="config_hide_preview_in_vt_confcall" value="true" />
         <boolean name="remove_modify_call_capability" value="true" />
         <boolean name="config_dds_switch_alert_dialog_supported" value="true"/>
