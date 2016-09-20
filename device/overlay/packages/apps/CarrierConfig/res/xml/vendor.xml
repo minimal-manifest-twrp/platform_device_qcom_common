@@ -314,6 +314,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
 
     <carrier_config mcc="460" mnc="03">
         <boolean name="ascii_7_bit_support_for_long_message" value="true" />
+        <boolean name="config_show_orig_dial_string_for_cdma" value="true" />
     </carrier_config>
 
     <carrier_config mcc="460" mnc="07">
@@ -330,9 +331,11 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.-->
 
     <carrier_config mcc="460" mnc="11">
         <boolean name="ascii_7_bit_support_for_long_message" value="true" />
+        <boolean name="config_show_orig_dial_string_for_cdma" value="true" />
     </carrier_config>
 
     <carrier_config mcc="460" mnc="12">
         <boolean name="ascii_7_bit_support_for_long_message" value="true" />
+        <boolean name="config_show_orig_dial_string_for_cdma" value="true" />
     </carrier_config>
 </carrier_config_list>
