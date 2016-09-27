@@ -1058,3 +1058,6 @@ service LKCore-rel /system/vendor/bin/LKCore
     disabled
     user system
     group system log qcom_diag
+
+on property:vold.decrypt=trigger_restart_min_framework
+    start time_daemon
