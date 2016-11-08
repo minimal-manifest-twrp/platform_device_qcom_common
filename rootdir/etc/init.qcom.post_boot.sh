@@ -48,6 +48,24 @@ function configure_memory_parameters() {
     MemTotalStr=`cat /proc/meminfo | grep MemTotal`
     MemTotal=${MemTotalStr:16:8}
 
+    if [ $MemTotal -le 2097152 ]; then
+        #Enable B service adj transition for 2GB or less memory
+        setprop ro.sys.fw.bservice_enable true
+        setprop ro.sys.fw.bservice_limit 5
+        setprop ro.sys.fw.bservice_age 5000
+        #Enable Delay Service Restart
+        setprop ro.am.reschedule_service true
+    fi
+
+    # Set background app limit to 60 for 64 bit config with memory greater than 3.5 GB
+    # Also set swappiness to 60
+    # Disable process reclaim on 64 bit config with memory greater than 3.5 GB
+    if [ $MemTotal -gt 3670016 ] && [ "$arch_type" == "aarch64" ]; then
+        setprop ro.sys.fw.bg_apps_limit 60
+        echo 60 > /proc/sys/vm/swappiness
+        echo 0 > /sys/module/process_reclaim/parameters/enable_process_reclaim
+    fi
+
     # Read adj series and set adj threshold for PPR and ALMK.
     # This is required since adj values change from framework to framework.
     adj_series=`cat /sys/module/lowmemorykiller/parameters/adj`
@@ -62,9 +80,13 @@ function configure_memory_parameters() {
     echo $set_almk_ppr_adj > /sys/module/lowmemorykiller/parameters/adj_max_shift
     echo $set_almk_ppr_adj > /sys/module/process_reclaim/parameters/min_score_adj
 
-    echo 1 > /sys/module/process_reclaim/parameters/enable_process_reclaim
-    echo 70 > /sys/module/process_reclaim/parameters/pressure_max
-    echo 30 > /sys/module/process_reclaim/parameters/swap_opt_eff
+    # Enable and configure process reclaim with memory less than 3.5 GB
+    if [ $MemTotal -lt 3670016 ]; then
+        echo 1 > /sys/module/process_reclaim/parameters/enable_process_reclaim
+        echo 70 > /sys/module/process_reclaim/parameters/pressure_max
+        echo 30 > /sys/module/process_reclaim/parameters/swap_opt_eff
+    fi
+
     echo 1 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
     if [ "$arch_type" == "aarch64" ] && [ $MemTotal -gt 2097152 ]; then
         echo 10 > /sys/module/process_reclaim/parameters/pressure_min
